@@ -5,6 +5,11 @@ export function Modal({ show, item, onClose }) {
   }
   let thumbnail =
     item.volumeInfo.imageLinks && item.volumeInfo.imageLinks.smallThumbnail;
+  let description = item.volumeInfo.description;
+  if (description.leght > 50) {
+    description = description.substr(0, 200) + "...";
+  }
+
   return (
     <>
       <div className="overlay">
@@ -22,12 +27,12 @@ export function Modal({ show, item, onClose }) {
                 <span>{item.volumeInfo.publishedDate}</span>
               </h4>
               <br />
-              <a href={item.volumeInfo.previewLink}>
-                <button>More</button>
+              <a href={item.volumeInfo.previewLink} target="_blank">
+                More
               </a>
             </div>
           </div>
-          <h4 className="description">{item.volumeInfo.description}</h4>
+          <h4 className="description">{description}</h4>
         </div>
       </div>
     </>
